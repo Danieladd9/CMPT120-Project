@@ -1,34 +1,44 @@
 # Introduction to Programming
 # Author: Daniel Addison
-# Date: 10/14/2017
+# Date: 10/20/2017
 
+def printTitleIntro():
+    print(" Knotts Scary Farm" )
+    print("Get scared from your socks this october for a very special night on halloween")
+
+printTitleIntro()
+
+def printEndingCopyright():
+    print("You went home")
+    print("copyright 2017 Daniel Addison Daniel.addison1@marist.edu")
+
+#new for project2
+
+def gameloop():
+    print ("Game Loop")
+
+def changeLocation():
+    print ("Change Location")    
+
+
+#Locations
 ghostrider = "A wooden rollercoaster, is the longet, tallest rollercoater made to scare kids as if they were in a pirateship"   
+xcelerator = " This rocket looking rolercoaster, is the fasteest ride at Knotts going 0.82 mph in 2.3 sec"
+boomerang = " Have you ever took a rollercoaster ride and back again twice going 0 to 55 in 3 sec"
+funnelCakeStand = "Best funnel cake you would buy at an amusment park, you haven't had anything good till you tried it"
+bullet = " Our new fastest RollerCoaster to date with VR technoligy for the experience"
+bathroom = "your scared, but you go to the bathroom for a even bigger suprise"
+
+#Booleans
 
 VisitedGhostrider= False
-
-xcelerator = " This rocket looking rolercoaster, is the fasteest ride at Knotts going 0.82 mph in 2.3 sec"
-
 VisitedXclerator= False
-
-boomerang = " Have you ever took a rollercoaster ride and back again twice going 0 to 55 in 3 sec"
-
 VisitedBoomerang= False
-
-funnelCakeStand = "Best funnel cake you would buy at an amusment park, you haven't had anything good till you tried it"
-
 VisitedFunnelcakestand= False
-
-Bullet = " Our new fastest RollerCoaster to date with VR technoligy for the experience"
-
 VisitedBullet= False
+VisitedBathroom= False
 
-Bathroom = "your scared, but you go to the bathroom for a even bigger suprise"
-
-isitedBathroom= False
-
-print(" Knotts Scary Farm" )
-print("Get scared from your socks this october for a very special night on halloween")
-
+#Game
 playerScore = 0
 playerLocation = funnelCakeStand
 
@@ -72,6 +82,24 @@ print("player current Location is " + playerLocation)
 
 playerScore = playerScore + 5
 print("player current score is " + str(playerScore ))
+#move to Bullet
+input("press enter to continue")
 
-print("You went home")
-print("copyright 2017 Daniel Addison Daniel.addison1@marist.edu")
+playerLocation = bullet
+VistedBullet = True
+print("player current Location is " + playerLocation)
+
+playerScore = playerScore + 5
+print("player current score is " + str(playerScore ))
+#move to Bathroom
+input("press enter to continue")
+
+playerLocation = bathroom
+VistedBathroom = True
+print("player current Location is " + playerLocation)
+
+playerScore = playerScore + 5
+print("player current score is " + str(playerScore ))
+
+printEndingCopyright()
+
