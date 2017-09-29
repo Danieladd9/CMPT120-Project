@@ -1,6 +1,10 @@
 # Introduction to Programming
 # Author: Daniel Addison
 # Date: 10/20/2017
+
+playerName = input("what is your name?")
+print ("hi"" "+ playerName +" " "welcome to Knotts Scary Farm")
+
 def printTitleIntro():
     print("Knotts Scary Farm" )
     print("Get scared from your socks this october for a very special night on halloween")
