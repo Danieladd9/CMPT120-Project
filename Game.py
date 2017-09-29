@@ -1,7 +1,6 @@
 # Introduction to Programming
 # Author: Daniel Addison
 # Date: 10/20/2017
-
 def printTitleIntro():
     print("Knotts Scary Farm" )
     print("Get scared from your socks this october for a very special night on halloween")
@@ -48,65 +47,103 @@ while running:
     print("player current Location is " + playerLocation)
     playerInput = input("plaese enter a command").lower()
     if playerInput == "north":
-        print (playerName +" ""chose"" ""north")
-        playerScore = playerScore + 5           
+        print (playerName +" ""chose"" ""north")          
         if playerLocation == ghostrider:
+            if not VisitedXclerator:
+                playerScore = playerScore + 5
+                VisitedXcelerator = True
             playerLocation = xcelerator
         elif playerLocation == xcelerator:
             print ("you going the wrong way")
         elif playerLocation == bullet:
+            if not VisitedGhostrider:
+                playerScore = playerScore + 5
+                VisitedGhostrider = True
             playerLocation = ghostrider
         elif playerLocation == funnelCakeStand:
+            if not VisitedBoomerang:
+                playerScore = playerScore + 5
+                VisitedBoomerang = True
             playerLocation = boomerang
         elif playerLocation == boomerang:
+            if not VisitedBathroom:
+                playerScore = playerScore + 5
+                VisitedBathroom = True
             playerLocation = bathroom
         elif playerLocation == bathroom:
             print ("you going the wrong way")
             
     elif playerInput == "south":
         print (playerName +" ""chose"" ""south")
-        playerScore = playerScore + 5
         if playerLocation == xcelerator:
-              playerLocation = ghostrider
+            if not VisitedGhostrider:
+                playerScore = playerScore + 5
+                VisitedGhostrider = True
+            playerLocation = ghostrider
         elif playerLocation == ghostrider:
+            if not VisitedBullet:
+                playerScore = playerScore + 5
+                VisitedBullet = True
             playerLocation = bullet
         elif playerLocation == bullet:
             print ("you going the wrong way")
         elif playerLocation == bathroom:
+            if not VisitedBoomerang:
+                playerScore = playerScore + 5
+                VisitedBoomerang = True
             playerLocation = boomerang
         elif playerLocation == boomerang:
+            if not VisitedFunnelCakeStand:
+                playerScore = playerScore + 5
+                VisitedFunnelCakeStand = True
             playerLocation = funnelCakeStand
         elif playerLocation == funnelCakeStand:
             print ("you going the wrong way")
             
     elif playerInput == "east":
         print (playerName +" ""chose"" ""east")
-        playerScore = playerScore + 5
         if playerLocation == bathroom:
+            if not VisitedXclerator:
+                playerScore = playerScore + 5
+                VisitedXcelerator = True
             playerLocation = xcelerator
         elif playerLocation == xcelerator:
             print ("you going the wrong way")
         elif playerLocation == boomerang:
+            if not VisitedGhostrider:
+                playerScore = playerScore + 5
+                VisitedGhostrider = True
             playerLocation = ghostrider
         elif playerLocation == ghostrider:
             print ("you going the wrong way")
         elif playerLocation == funnelCakeStand:
+            if not VisitedBullet:
+                playerScore = playerScore + 5
+                VisitedBullet = True
             playerLocation = bullet
         elif playerLocation == bullet:
             print ("you going the wrong way")
 
     elif playerInput == "west":
         print (playerName +" ""chose"" ""west")
-        playerScore = playerScore + 5
         if playerLocation == xcelerator:
+            if not VisitedBathroom:
+                playerScore = playerScore + 5
+                VisitedBathroom = True
             playerLocation = bathroom
         elif playerLocation == bathroom:
             print ("you going the wrong way")
         elif playerLocation == ghostrider:
+            if not VisitedBoomerang:
+                playerScore = playerScore + 5
+                VisitedBoomerang = True
             playerLocation = boomerang
         elif playerLocation == boomerang:
             print ("you going the wrong way")
         elif playerLocation == bullet:
+            if not VisitedFunnelCakeStand:
+                playerScore = playerScore + 5
+                VisitedFunnelCakeStand = True
             playerLocation = funnelCakeStand
         elif playerLocation == funnelCakeStand:
             print ("you going the wrong way")
