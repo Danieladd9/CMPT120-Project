@@ -2,8 +2,6 @@
 # Author: Daniel Addison
 # Date: 10/20/2017
 
-
-
 def printTitleIntro():
     print("Knotts Scary Farm" )
     print("Get scared from your socks this october for a very special night on halloween")
@@ -43,7 +41,83 @@ VisitedBoomerang= False
 VisitedFunnelCakeStand= False
 VisitedBullet= False
 VisitedBathroom= False
+#-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+running = True
+while running:
+    print("player current score is " + str(playerScore ))
+    print("player current Location is " + playerLocation)
+    playerInput = input("plaese enter a command").lower()
+    if playerInput == "north":
+        print (playerName +" ""chose"" ""north")
+        playerScore = playerScore + 5           
+        if playerLocation == ghostrider:
+            playerLocation = xcelerator
+        elif playerLocation == xcelerator:
+            print ("you going the wrong way")
+        elif playerLocation == bullet:
+            playerLocation = ghostrider
+        elif playerLocation == funnelCakeStand:
+            playerLocation = boomerang
+        elif playerLocation == boomerang:
+            playerLocation = bathroom
+        elif playerLocation == bathroom:
+            print ("you going the wrong way")
+            
+    elif playerInput == "south":
+        print (playerName +" ""chose"" ""south")
+        playerScore = playerScore + 5
+        if playerLocation == xcelerator:
+              playerLocation = ghostrider
+        elif playerLocation == ghostrider:
+            playerLocation = bullet
+        elif playerLocation == bullet:
+            print ("you going the wrong way")
+        elif playerLocation == bathroom:
+            playerLocation = boomerang
+        elif playerLocation == boomerang:
+            playerLocation = funnelCakeStand
+        elif playerLocation == funnelCakeStand:
+            print ("you going the wrong way")
+            
+    elif playerInput == "east":
+        print (playerName +" ""chose"" ""east")
+        playerScore = playerScore + 5
+        if playerLocation == bathroom:
+            playerLocation = xcelerator
+        elif playerLocation == xcelerator:
+            print ("you going the wrong way")
+        elif playerLocation == boomerang:
+            playerLocation = ghostrider
+        elif playerLocation == ghostrider:
+            print ("you going the wrong way")
+        elif playerLocation == funnelCakeStand:
+            playerLocation = bullet
+        elif playerLocation == bullet:
+            print ("you going the wrong way")
 
+    elif playerInput == "west":
+        print (playerName +" ""chose"" ""west")
+        playerScore = playerScore + 5
+        if playerLocation == xcelerator:
+            playerLocation = bathroom
+        elif playerLocation == bathroom:
+            print ("you going the wrong way")
+        elif playerLocation == ghostrider:
+            playerLocation = boomerang
+        elif playerLocation == boomerang:
+            print ("you going the wrong way")
+        elif playerLocation == bullet:
+            playerLocation = funnelCakeStand
+        elif playerLocation == funnelCakeStand:
+            print ("you going the wrong way")
+        
+            
+    elif playerInput == "help":
+        print ("The commands to this game is: North, South, East, West, Help, and Quit")
+    elif playerInput == "quit":
+        print ("Goodbye,Thank You for playing")
+        running = False
+#--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------        
 def printLocScore():
     print (playerScore+" " + playerLocation)
 def printgameloop(playerScore,playerLocation):
@@ -110,7 +184,5 @@ def printgameloop(playerScore,playerLocation):
     print("player current score is " + str(playerScore ))
 
     
-printgameloop(playerScore,playerLocation)                    
+                    
 printEndingCopyright()
-   
-    
