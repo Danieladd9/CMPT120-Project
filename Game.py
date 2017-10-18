@@ -31,13 +31,17 @@ boomerang = "Boomarang: Have you ever took a rollercoaster ride and back again t
 funnelCakeStand = "The Funnel Stand: The Best funnel cake you would buy at an amusment park, you haven't had anything good till you tried it"
 bullet = "Bullet: Our new fastest RollerCoaster to date with VR technoligy for the experience"
 bathroom = "Bathroom: we understand that your so scared, but wait till you go to the bathroom for a even bigger suprise"
+shuttle = "Space Shuttle: Bus to carry you to the rides"
+cottonCandy = "Cotton Candy: right by funnel cake, best cotton candy you ever had"
 
 locationDiscription=["Ghostrider: A wooden rollercoaster, is the longet, tallest rollercoater made to scare kids as if they were in a pirateship",
                      "Xcelerator: This rocket looking rolercoaster, is the fasteest ride at Knotts going 0.82 mph in 2.3 sec",
                      "Boomarang: Have you ever took a rollercoaster ride and back again twice going 0 to 55 in 3 sec",
                      "The Funnel Stand: The Best funnel cake you would buy at an amusment park, you haven't had anything good till you tried it",
                      "Bullet: Our new fastest RollerCoaster to date with VR technoligy for the experience",
-                     "Bathroom: we understand that your so scared, but wait till you go to the bathroom for a even bigger suprise"]                                        
+                     "Bathroom: we understand that your so scared, but wait till you go to the bathroom for a even bigger suprise",
+                     "Space Shuttle: Bus to carry you to the rides",
+                     "Cotton Candy: right by funnel cake, best cotton candy you ever had"]                                        
 #newloc   
 playerScore = 0 
 playerLocation = funnelCakeStand
@@ -51,7 +55,8 @@ VisitedFunnelCakeStand= False
 VisitedBullet= False
 VisitedBathroom= False
 
-hasVisited=[False,False,False,False,False,False,False,False]
+
+hasVisited=[False,False,False,False,False,False,False,False,False,False]
 #-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 running = True
 while running:
@@ -60,24 +65,24 @@ while running:
     playerInput = input("plaese enter a command").lower()
     if playerInput == "north":
         print (playerName +" ""chose"" ""north")          
-        if playerLocation == ghostrider:
-            if not VisitedXclerator:
+        if playerLocation == 0:
+            if not hasVisited[1]:
                 playerScore = playerScore + 5
-                VisitedXcelerator = True
-            playerLocation = xcelerator
-        elif playerLocation == xcelerator:
+                hasVisited[1] = True
+            playerLocation = 1
+        elif playerLocation == 1:
             print ("you going the wrong way")
-        elif playerLocation == bullet:
-            if not VisitedGhostrider:
+        elif playerLocation == 4:
+            if not hasVisited[0]:
                 playerScore = playerScore + 5
-                VisitedGhostrider = True
-            playerLocation = ghostrider
-        elif playerLocation == funnelCakeStand:
-            if not VisitedBoomerang:
+                hasVisited[0]= True
+            playerLocation = 0
+        elif playerLocation == 3:
+            if not hasVisited[2]:
                 playerScore = playerScore + 5
-                VisitedBoomerang = True
-            playerLocation = boomerang
-        elif playerLocation == boomerang:
+                hasVisited[2] = True
+            playerLocation = 2
+        elif playerLocation == 2:
             if not VisitedBathroom:
                 playerScore = playerScore + 5
                 VisitedBathroom = True
@@ -100,11 +105,11 @@ while running:
         elif playerLocation == bullet:
             print ("you going the wrong way")
         elif playerLocation == bathroom:
-            if not VisitedBoomerang:
+            if not hasVisited[2]:
                 playerScore = playerScore + 5
-                VisitedBoomerang = True
-            playerLocation = boomerang
-        elif playerLocation == boomerang:
+                hasVisited[2] = True
+            playerLocation = 2
+        elif playerLocation == 2:
             if not VisitedFunnelCakeStand:
                 playerScore = playerScore + 5
                 VisitedFunnelCakeStand = True
@@ -121,7 +126,7 @@ while running:
             playerLocation = xcelerator
         elif playerLocation == xcelerator:
             print ("you going the wrong way")
-        elif playerLocation == boomerang:
+        elif playerLocation == 2:
             if not VisitedGhostrider:
                 playerScore = playerScore + 5
                 VisitedGhostrider = True
@@ -146,11 +151,11 @@ while running:
         elif playerLocation == bathroom:
             print ("you going the wrong way")
         elif playerLocation == ghostrider:
-            if not VisitedBoomerang:
+            if not hasVisited[2]:
                 playerScore = playerScore + 5
-                VisitedBoomerang = True
-            playerLocation = boomerang
-        elif playerLocation == boomerang:
+                hasVisited[2] = True
+            playerLocation = 2
+        elif playerLocation == 2:
             print ("you going the wrong way")
         elif playerLocation == bullet:
             if not VisitedFunnelCakeStand:
@@ -189,7 +194,7 @@ def printgameloop(playerScore,playerLocation):
     input("press enter to continue")
 
     playerLocation = boomerang
-    VisitedBoomerang= True
+    hasVisited[2]= True
     print("player current Location is " + playerLocation)
 
     playerScore = playerScore + 5
