@@ -195,5 +195,3 @@ while running:
         print("6: Spaceshuttle \n7: Cottoncandy")
         
 printEndingCopyright()
-   
-    
