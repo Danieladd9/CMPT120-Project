@@ -38,6 +38,7 @@ def printTitleIntro():
     print("Knott's Scary Farm")
     print("=================\n")
     print("Get scared from your socks this October for a very special night on Halloween.")
+    print("The commands to this game is: North, South, East, West, Help, Points, Map, and Quit")
 
 def printEndingCopyright():
     print("You went home after a long day of Fright Fest.")
@@ -139,10 +140,7 @@ def updateGame():
            moveTo(7)
         else:
             print("You cannot go that way")
-        
-    elif playerInput == "help":
-        print("The commands to this game is: North, South, East, West, Help, Points, Map, and Quit")
-        playerMoves -= 1
+            
     elif playerInput == "quit":
         print("Goodbye, Thank You for playing")
         printEndingCopyright()
