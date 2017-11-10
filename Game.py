@@ -48,8 +48,8 @@ playerName = ""
 def playerCustomization():
     global playerName
     playerName = input("What is your name? ")
-    print ("\nHi " + playerName + " Welcome to Knott’s Scary Farm")
-    print("\nTo get the commands of the game type help")
+    print ("\nHi " + playerName + " Welcome to Knott’s Scary Farm.")
+    print("\nTo get the commands of the game type help.")
 
 def printTitleIntro():
     print("Welcome to Knott's Scary Farm!")
@@ -162,7 +162,7 @@ def updateGame():
         print("\nThe commands to this game is: North, South, East, West, Help, Points, Map, and Quit")
         playerMoves -= 1        
     elif playerInput == "quit":
-        print("\nGoodbye, Thank You for playing")
+        print("\nGoodbye, Thank You for playing.")
         printEndingCopyright()
         quit()
     elif playerInput == "points":
