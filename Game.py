@@ -1,8 +1,8 @@
 # Introduction to Programming
 # Author: Daniel Addison
-# Date: 11/7/2017
+# Date: 11/9/2017
 
-#new for project3  
+#new for project4  
 #this array holds the description of the players location
 #global need it for game
 #We craeted a matrix grid for Project4
