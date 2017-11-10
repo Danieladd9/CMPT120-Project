@@ -63,6 +63,7 @@ def initGameData():
 def showScene():
     global locationDiscription
     global playerLocation
+
     print("\nYour current Location is " + locationDiscription[playerLocation])
     
 def processInput():
