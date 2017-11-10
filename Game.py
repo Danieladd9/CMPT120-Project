@@ -5,6 +5,16 @@
 #new for project3  
 #this array holds the description of the players location
 #global need it for game
+#We craeted a matrix grid for Project4
+worldMatrix = [
+[ -1, -1, -1, -1, -1],
+[ -1,  7,  6,  8, -1],
+[ -1,  5,  1, -1, -1],
+[ -1,  2,  0, -1, -1],
+[ -1,  3,  4,  9, -1],
+[ -1, -1, -1, -1, -1]
+]
+#Added Two new Locations for Project4
 locationDiscription=["Ghostrider: A wooden rollercoaster, is the longest, \
 tallest roller-coaster made to scare kids as if they were in a pirate ship.",
                      "Xcelerator: This rocket looking roller-coaster, is the \
@@ -16,7 +26,9 @@ you haven't had anything good till you tried it.",
                      "Bathroom: we understand that your so scared,\
 but wait till you go to the bathroom for an even bigger surprise.",
                      "Space Shuttle: Bus to carry you to the rides.",
-                     "Cotton Candy: right by funnel cake, best cotton candy you ever had."]                                        
+                     "Cotton Candy: right by funnel cake, best cotton candy you ever had.",
+                     "BeachLagoon: Slip and Slide.",
+                     "Paperworld: Learn about the paper route empire."]                                        
 #newloc   
 playerScore = 5 
 playerLocation = 3
@@ -24,6 +36,10 @@ playerLocation = 3
 #Booleans
 #this is how we know where the player has been
 hasVisited=[False,False,False,True,False,False,False,False,False,False]
+
+#Matrix we going to keep track of the player Y and X cord...
+player = 4
+player = 1
 
 #Time Limit
 playerMoves = 20
@@ -170,6 +186,10 @@ def moveTo(location):
     global hasVisited
     global playerScore
     global playerLocation
+    global playerY
+    global playerX
+#if direction == "north"
+#pick up from here on sunday
     if not hasVisited[location]:
         playerScore = playerScore + 5
         hasVisited[location] = True
