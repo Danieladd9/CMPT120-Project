@@ -6,17 +6,17 @@
 #this array holds the description of the players location
 #global need it for game
 locationDiscription=["Ghostrider: A wooden rollercoaster, is the longest, \
-tallest roller-coaster made to scare kids as if they were in a pirate ship",
+tallest roller-coaster made to scare kids as if they were in a pirate ship.",
                      "Xcelerator: This rocket looking roller-coaster, is the \
-fastest ride at Knott’s going 0.82 mph in 2.3 sec",
-                     "Boomerang: Have you ever took a rollercoaster ride and back again twice going 0 to 55 in 3 sec",
+fastest ride at Knott’s going 0.82 mph in 2.3 sec.",
+                     "Boomerang: Have you ever took a rollercoaster ride and back again twice going 0 to 55 in 3 sec.",
                      "The Funnel Stand: The Best funnel cake you would buy at an amusement park, \
-you haven't had anything good till you tried it",
-                     "Bullet: Our new fastest Roller-coaster to date with VR technology for the experience",
+you haven't had anything good till you tried it.",
+                     "Bullet: Our new fastest Roller-coaster to date with VR technology for the experience.",
                      "Bathroom: we understand that your so scared,\
-but wait till you go to the bathroom for an even bigger surprise",
-                     "Space Shuttle: Bus to carry you to the rides",
-                     "Cotton Candy: right by funnel cake, best cotton candy you ever had"]                                        
+but wait till you go to the bathroom for an even bigger surprise.",
+                     "Space Shuttle: Bus to carry you to the rides.",
+                     "Cotton Candy: right by funnel cake, best cotton candy you ever had."]                                        
 #newloc   
 playerScore = 5 
 playerLocation = 3
@@ -32,17 +32,17 @@ playerName = ""
 def playerCustomization():
     global playerName
     playerName = input("What is your name? ")
-    print ("Hi " + playerName + " Welcome to Knott’s Scary Farm")
+    print ("\nHi " + playerName + " Welcome to Knott’s Scary Farm")
+    print("\nTo get the commands of the game type help")
 
 def printTitleIntro():
-    print("Knott's Scary Farm")
-    print("=================\n")
-    print("Get scared from your socks this October for a very special night on Halloween.")
-    print("The commands to this game is: North, South, East, West, Help, Points, Map, and Quit")
-
+    print("Welcome to Knott's Scary Farm!")
+    print("==============================\n")
+    print("Come to get scared from your socks this October for a very special night on Halloween.\n")
+    
 def printEndingCopyright():
-    print("You went home after a long day of Fright Fest.")
-    print("Copyright 2017 Daniel Addison Daniel.addison1@marist.edu")
+    print("\nYou went home after a long day of Fright Fest.")
+    print("\nCopyright 2017 Daniel Addison Daniel.addison1@marist.edu")
     
 def initGameData():                                   
     #newloc
@@ -63,11 +63,11 @@ def initGameData():
 def showScene():
     global locationDiscription
     global playerLocation
-    print("player current Location is " + locationDiscription[playerLocation])
+    print("\nYour current Location is " + locationDiscription[playerLocation])
     
 def processInput():
     global playerInput
-    playerInput = input("please enter a command: ").lower()
+    playerInput = input("\nplease enter a command: ").lower()
     
 def updateGame():
     #this check if the player has any moves left
@@ -78,7 +78,7 @@ def updateGame():
     if playerMoves == 0:
         running = False
     if playerInput == "north":
-        print(playerName + " chose north")
+        print("\n" + playerName + " chose north")
         playerMoves -= 1
         if playerLocation == 0:
             moveTo(1)
@@ -93,10 +93,10 @@ def updateGame():
         elif playerLocation == 5:
             moveTo(7)       
         else:
-            print("You cannot go that way")
+            print("\nYou cannot go that way!")
             
     elif playerInput == "south":
-        print(playerName + " chose south")
+        print("\n" + playerName + " chose south")
         playerMoves -= 1
         if playerLocation == 1:
             moveTo(0)
@@ -111,10 +111,10 @@ def updateGame():
         elif playerLocation == 7:
             moveTo(5)
         else:
-            print("You cannot go that way")
+            print("\nYou cannot go that way!")
             
     elif playerInput == "east":
-        print(playerName + " chose east")
+        print("\n" + playerName + " chose east")
         playerMoves -= 1
         if playerLocation == 5:
             moveTo(1)
@@ -125,10 +125,10 @@ def updateGame():
         elif playerLocation == 7:
             moveTo(6)
         else:
-            print("You cannot go that way")
+            print("\nYou cannot go that way!")
 
     elif playerInput == "west":
-        print(playerName + " chose west")
+        print("\n" + playerName + " chose west")
         playerMoves -= 1
         if playerLocation == 1:
             moveTo(5)
@@ -139,14 +139,17 @@ def updateGame():
         elif playerLocation == 6:
            moveTo(7)
         else:
-            print("You cannot go that way")
+            print("\nYou cannot go that way!")
             
+    elif playerInput == "help":
+        print("\nThe commands to this game is: North, South, East, West, Help, Points, Map, and Quit")
+        playerMoves -= 1        
     elif playerInput == "quit":
-        print("Goodbye, Thank You for playing")
+        print("\nGoodbye, Thank You for playing")
         printEndingCopyright()
         quit()
     elif playerInput == "points":
-        print("Player current score is " + str(playerScore))
+        print("\nYour current score is " + str(playerScore))
         playerMoves -= 1
     #this is the player map
     elif playerInput == "map":
