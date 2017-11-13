@@ -1,19 +1,32 @@
 # Introduction to Programming
 # Author: Daniel Addison
 # Date: 11/9/2017
+ghostRider = 0
+xcelerator = 1
+boomerang = 2
+funnelCake = 3
+bullet = 4
+bathroom = 5
+spaceShuttle = 6
+cottonCandy = 7
+beachLagoon = 8
+paperWorld = 9
 
 #new for project4  
 #this array holds the description of the players location
 #global need it for game
 #We craeted a matrix grid for Project4
+#location names are index's for the locationDiscription list
+inventory =[]
 worldMatrix = [
-[ -1, -1, -1, -1, -1],
-[ -1,  7,  6,  8, -1],
-[ -1,  5,  1, -1, -1],
-[ -1,  2,  0, -1, -1],
-[ -1,  3,  4,  9, -1],
-[ -1, -1, -1, -1, -1]
+[ -1,           -1,     -1,        -1,          -1],
+[ -1,  cottonCandy, spaceShuttle,  beachLagoon, -1],
+[ -1,  bathroom,    xcelerator,    -1,          -1],
+[ -1,  boomerang,   ghostRider,    -1,          -1],
+[ -1,  funnelCake,  bullet,        paperWorld,  -1],
+[ -1,           -1,     -1,        -1,          -1]
 ]
+
 #Added Two new Locations for Project4
 locationDiscription=["Ghostrider: A wooden rollercoaster, is the longest, \
 tallest roller-coaster made to scare kids as if they were in a pirate ship.",
@@ -28,7 +41,9 @@ but wait till you go to the bathroom for an even bigger surprise.",
                      "Space Shuttle: Bus to carry you to the rides.",
                      "Cotton Candy: right by funnel cake, best cotton candy you ever had.",
                      "BeachLagoon: Slip and Slide.",
-                     "Paperworld: Learn about the paper route empire."]                                        
+                     "Paperworld: Learn about the paper route empire."]
+shortName =["ghostRider", "xcelerator", "boomerang", "funnelCake", "bullet", "bathroom", "spaceShuttle", "cottonCandy", "beachLagoon", "paperworld"]
+items =    ["none",       "camera", "none",      "none",       "map",    "none",     "none",         "waterBottle",   "none",       "none"]
 #newloc   
 playerScore = 5 
 playerLocation = 3
@@ -36,10 +51,6 @@ playerLocation = 3
 #Booleans
 #this is how we know where the player has been
 hasVisited=[False,False,False,True,False,False,False,False,False,False]
-
-#Matrix we going to keep track of the player Y and X cord...
-player = 4
-player = 1
 
 #Time Limit
 playerMoves = 20
@@ -66,6 +77,11 @@ def initGameData():
     playerScore = 5
     global playerLocation
     playerLocation = 3
+#Player starts off in the funnel cake which has coords Y 4 X 1
+    global playerY
+    global playerX
+    playerY = 4
+    playerX = 1
     
     #Booleans
     #this is how we know where the player has been
@@ -75,12 +91,18 @@ def initGameData():
     #Time Limit
     global playerMoves
     playerMoves = 20
+
+    print("\n" + locationDiscription[funnelCake])
     
 def showScene():
     global locationDiscription
     global playerLocation
 
-    print("\nYour current Location is " + locationDiscription[playerLocation])
+    #if the player has visited show them the short discritpion if they have not show them the long one
+    if hasVisited[playerLocation]:
+        print("\n The player is at " +  shortName[playerLocation])
+    else:
+        print("\nYour current Location is " + shortName[playerLocation])
     
 def processInput():
     global playerInput
@@ -94,111 +116,85 @@ def updateGame():
     global playerInput
     if playerMoves == 0:
         running = False
-    if playerInput == "north":
-        print("\n" + playerName + " chose north")
-        playerMoves -= 1
-        if playerLocation == 0:
-            moveTo(1)
-        elif playerLocation == 1:
-            moveTo(6)
-        elif playerLocation == 4:
-            moveTo(0)
-        elif playerLocation == 3:
-            moveTo(2)
-        elif playerLocation == 2:
-            moveTo(5)
-        elif playerLocation == 5:
-            moveTo(7)       
-        else:
-            print("\nYou cannot go that way!")
-            
-    elif playerInput == "south":
-        print("\n" + playerName + " chose south")
-        playerMoves -= 1
-        if playerLocation == 1:
-            moveTo(0)
-        elif playerLocation == 0:
-            moveTo(4)
-        elif playerLocation == 5:
-            moveTo(2)
-        elif playerLocation == 2:
-            moveTo(3)
-        elif playerLocation == 6:
-            moveTo(1)
-        elif playerLocation == 7:
-            moveTo(5)
-        else:
-            print("\nYou cannot go that way!")
-            
-    elif playerInput == "east":
-        print("\n" + playerName + " chose east")
-        playerMoves -= 1
-        if playerLocation == 5:
-            moveTo(1)
-        elif playerLocation == 2:
-            moveTo(0)
-        elif playerLocation == 3:
-            moveTo(4)
-        elif playerLocation == 7:
-            moveTo(6)
-        else:
-            print("\nYou cannot go that way!")
-
-    elif playerInput == "west":
-        print("\n" + playerName + " chose west")
-        playerMoves -= 1
-        if playerLocation == 1:
-            moveTo(5)
-        elif playerLocation == 0:
-           moveTo(2)
-        elif playerLocation == 4:
-            moveTo(3)
-        elif playerLocation == 6:
-           moveTo(7)
-        else:
-            print("\nYou cannot go that way!")
-            
+#checks if the player has entered a direction 
+    elif playerInput == "north" or playerInput == "south" or playerInput == "east" or playerInput == "west":
+        moveTo()
     elif playerInput == "help":
-        print("\nThe commands to this game is: North, South, East, West, Help, Points, Map, and Quit")
-        playerMoves -= 1        
+        print("\nThe commands to this game is: North, South, East, West, Help, Points, Map, look, search, take, and Quit")       
     elif playerInput == "quit":
         print("\nGoodbye, Thank You for playing.")
         printEndingCopyright()
         quit()
     elif playerInput == "points":
         print("\nYour current score is " + str(playerScore))
-        playerMoves -= 1
+    elif playerInput == "look":
+        print("\nYour current Location is " + locationDiscription[playerLocation])
+    elif playerInput == "search":
+        print("you see the following items " + items[playerLocation])
+    elif playerInput == "take":
+        if items[playerLocation] == "none":
+            print("there nothing there to take")
+        else:
+            print("you picked up a " + items[playerLocation])
+            inventory.append(items[playerLocation])
+            items[playerLocation] = "none"
     #this is the player map
     elif playerInput == "map":
-        print(" 7 - 6")
+        print(" 7 - 6 - 8")
         print(" |   |")
         print(" 5 - 1")
         print(" |   |")
         print(" 2 - 0")
         print(" |   |")
-        print(" 3 - 4")
+        print(" 3 - 4 - 9")
         print("0: Ghostrider \n1: Xcelerator")
         print("2: Boomerang \n3: Funnelcake")
         print("4: Bullet \n5: Bathroom")
         print("6: Spaceshuttle \n7: Cottoncandy")
-    
-def moveTo(location):
+        print("8: beachLagoon \n9: PaperWorld")
+def moveTo():
     global hasVisited
     global playerScore
     global playerLocation
     global playerY
     global playerX
-#if direction == "north"
-#pick up from here on sunday
-    if not hasVisited[location]:
-        playerScore = playerScore + 5
-        hasVisited[location] = True
-    playerLocation = location
+    global playerMoves
+#copies the player coords in case the player can not move the direction they want
+    tempX = playerX
+    tempY = playerY
+#gets a change in the list index given which direction the player entered
+    if playerInput == "north" and playerY >= 0:
+        playerY = playerY - 1
+    elif playerInput == "south" and playerY < 5:
+        playerY = playerY + 1
+    elif playerInput == "east" and playerX < 4:
+        playerX = playerX + 1
+    elif playerInput == "west" and playerX >= 0:
+        playerX = playerX - 1
+    #makes sure the new location isn't -1 which is the value that means no location
+    if worldMatrix[playerY][playerX] != -1:
+        location = worldMatrix[playerY][playerX]
+        playerLocation = location
+        #shows scene right before change the boolean of visited to True
+        showScene()
+        playerMoves -= 1
+        if not hasVisited[location]:
+            playerScore = playerScore + 5
+            hasVisited[location] = True
+    else:
+        print("You can't go", playerInput)
+        playerX = tempX
+        playerY = tempY
+
+def win():
+    print("you Win!")
+    
+def lose():
+    print("sorry you lost, please try again")
     
 def gameLoop():
     running = True
     while running:
-        showScene()
         processInput()
         updateGame()
 def main():
@@ -208,3 +204,10 @@ def main():
     gameLoop()
     printEndingCopyright()
 main()
+
+#make a new elif statement after it checks for directions then just have it print something like discriptions[location]
+#make a new list of 10 things that has None for all and then have 3 items have a list
+#make a new list of booleans all false that is if searched
+#then add a search thing that makes that list of booleans true
+#pick a location make an if statement in the go to then add a if item in statement then choose win or lose given a location
+
