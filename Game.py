@@ -86,8 +86,8 @@ def initGameData():
     #Booleans
     #this is how we know where the player has been
     global hasVisited
-    hasVisited = [False,False,False,True,False,False,False,False,False,False]
-
+    hasVisited = [0,0,0,0,0,0,0,0,0,0]
+    
     #Time Limit
     global playerMoves
     playerMoves = 20
@@ -185,7 +185,18 @@ def moveTo():
         print("You can't go", playerInput)
         playerX = tempX
         playerY = tempY
-
+        
+def checkForWin():
+    numberofplacesVisited = 0
+    visits = 0
+    for i in hasvisited:
+        if i == 1:
+            numberofplacesvisited += i
+        visits += i
+        if numberofplacesVisited == 10:
+            win()
+        elif visit > 10:
+            lose()
 def win():
     print("you Win!")
     
