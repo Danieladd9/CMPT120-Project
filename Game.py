@@ -208,6 +208,7 @@ def gameLoop():
     while running:
         processInput()
         updateGame()
+        checkForWin()
 def main():
     printTitleIntro()
     playerCustomization()
