@@ -1,66 +1,124 @@
 # Introduction to Programming
 # Author: Daniel Addison
-# Date: 11/9/2017
-ghostRider = 0
-xcelerator = 1
-boomerang = 2
-funnelCake = 3
-bullet = 4
-bathroom = 5
-spaceShuttle = 6
-cottonCandy = 7
-beachLagoon = 8
-paperWorld = 9
+# Date: 12/2/2017
 
-#new for project4  
+class Location:
+    def __init__(self, shortName, items, description):
+        self.description = description
+        self.name = shortName
+        self.items = items
+        self.hasVisited = False
+        self.hasSearched = False
+    def search(self):
+        print("you see the following items " + self.items)
+        self.hasSearched = True
+    def look(self):
+        print("\nYour current Location is " + self.description)
+    def take(self, item):
+        if self.hasSearched == True:
+            if item in self.items:
+                print("you picked up a " + item)
+                self.items = "none"
+                return item
+            else:
+                print("there nothing there to take")
+        else:
+            print("You do not see anything")
+    #def drop():
+
+        
+        
+        
+
+
+class Player:
+    def __init__(self, userName):
+        self.x = 1
+        self.y = 4
+        self.userName = userName
+        self.inventory = []
+        self.score = 5
+        self.moves = 20
+        self.location = 3
+    def updateLocation(self):
+        self.location = worldMatrix[self.y][self.x]
+    #def use():
+        
+    
+
+locations = [
+    Location("ghostrider", "camera", "Ghostrider: A wooden rollercoaster, is the longest, \
+tallest roller-coaster made to scare kids as if they were in a pirate ship."),
+    Location("xcelerator", "none", "Xcelerator: This rocket looking roller-coaster, is the \
+fastest ride at Knott’s going 0.82 mph in 2.3 sec."),
+    Location("boomerang", "none", "Boomerang: Have you ever took a rollercoaster ride and \
+back again twice going 0 to 55 in 3 sec."),
+    Location("funnelCake", "fries", "The Funnel Stand: The Best funnel cake you would buy at an amusement park, \
+you haven't had anything good till you tried it."),
+    Location("bullet", "map", "Bullet: Our new fastest Roller-coaster to date with VR technology for the experience."),
+    Location("bathroom", "none", "Bathroom: we understand that your so scared,\
+but wait till you go to the bathroom for an even bigger surprise."),
+    Location("spaceShuttle", "none", "Space Shuttle: Bus to carry you to the rides."),
+    Location("cottoncandy", "waterbottle", "Cotton Candy: right by funnel cake, best cotton candy you ever had."),
+    Location("beachLagoon", "none", "BeachLagoon: Slip and Slide."),
+    Location("paperworld", "none", "Paperworld: Learn about the paper route empire."),
+    Location("waterslide", "bucket", "Extreme water unlike like you ever seen"),
+    Location("legoblockland", "legos", "Build your way out the land")
+    ]
+
+#new for project4  items,
 #this array holds the description of the players location
 #global need it for game
 #We craeted a matrix grid for Project4
 #location names are index's for the locationDiscription list
 inventory =[]
 worldMatrix = [
-[ -1,           -1,     -1,        -1,          -1],
-[ -1,  cottonCandy, spaceShuttle,  beachLagoon, -1],
-[ -1,  bathroom,    xcelerator,    -1,          -1],
-[ -1,  boomerang,   ghostRider,    -1,          -1],
-[ -1,  funnelCake,  bullet,        paperWorld,  -1],
-[ -1,           -1,     -1,        -1,          -1]
+[ -1,-1,-1, -1,-1],
+[ -1, 7, 6, 8, -1],
+[ -1, 5, 1, 10,-1],
+[ -1, 2, 0, 11 -1],
+[ -1, 3, 4, 9, -1],
+[ -1,-1,-1,-1, -1]
 ]
-
+#-------------------------------------------------------------------------------------------------------------------------------------------------
 #Added Two new Locations for Project4
-locationDiscription=["Ghostrider: A wooden rollercoaster, is the longest, \
-tallest roller-coaster made to scare kids as if they were in a pirate ship.",
-                     "Xcelerator: This rocket looking roller-coaster, is the \
-fastest ride at Knott’s going 0.82 mph in 2.3 sec.",
-                     "Boomerang: Have you ever took a rollercoaster ride and back again twice going 0 to 55 in 3 sec.",
-                     "The Funnel Stand: The Best funnel cake you would buy at an amusement park, \
-you haven't had anything good till you tried it.",
-                     "Bullet: Our new fastest Roller-coaster to date with VR technology for the experience.",
-                     "Bathroom: we understand that your so scared,\
-but wait till you go to the bathroom for an even bigger surprise.",
-                     "Space Shuttle: Bus to carry you to the rides.",
-                     "Cotton Candy: right by funnel cake, best cotton candy you ever had.",
-                     "BeachLagoon: Slip and Slide.",
-                     "Paperworld: Learn about the paper route empire."]
-shortName =["ghostRider", "xcelerator", "boomerang", "funnelCake", "bullet", "bathroom", "spaceShuttle", "cottonCandy", "beachLagoon", "paperworld"]
-items =    ["none",       "camera", "none",      "none",       "map",    "none",     "none",         "waterBottle",   "none",       "none"]
+#locationDiscription=["Ghostrider: A wooden rollercoaster, is the longest, \
+#tallest roller-coaster made to scare kids as if they were in a pirate ship.",
+#                     "Xcelerator: This rocket looking roller-coaster, is the \
+#fastest ride at Knott’s going 0.82 mph in 2.3 sec.",
+#                     "Boomerang: Have you ever took a rollercoaster ride and back again twice going 0 to 55 in 3 sec.",
+#                     "The Funnel Stand: The Best funnel cake you would buy at an amusement park, \
+#you haven't had anything good till you tried it.",
+#                     "Bullet: Our new fastest Roller-coaster to date with VR technology for the experience.",
+#                     "Bathroom: we understand that your so scared,\
+#but wait till you go to the bathroom for an even bigger surprise.",
+#                     "Space Shuttle: Bus to carry you to the rides.",
+#                     "Cotton Candy: right by funnel cake, best cotton candy you ever had.",
+#                     "BeachLagoon: Slip and Slide.",
+#                     "Paperworld: Learn about the paper route empire."]
+#shortName = ["ghostRider", "xcelerator", "boomerang", "funnelCake", "bullet", "bathRoom", "spaceShuttle", "cottonCandy", "beachLagoon", "paperWorld"]
+#items     = ["camera",       "none",        "none",   "fries",       "map",    "none",     "none",         "waterBottle",   "none",       "none"]
+#hasSearched = [False, False, False, False, False, False, False, False, False, False]
+#-----------------------------------------------------------------------------------------------------------------------------------------------------
 #newloc   
-playerScore = 5 
-playerLocation = 3
+#playerScore = 5 
+#playerLocation = 3
 
 #Booleans
 #this is how we know where the player has been
-hasVisited=[False,False,False,True,False,False,False,False,False,False]
+#hasVisited=[False,False,False,True,False,False,False,False,False,False]
 
 #Time Limit
-playerMoves = 20
+#playerMoves = 20
 playerInput = 3
-playerName = ""
+#playerName = ""
 def playerCustomization():
-    global playerName
+#    global playerName
     playerName = input("What is your name? ")
-    print ("\nHi " + playerName + " Welcome to Knott’s Scary Farm.")
+    player1 = Player(playerName)
+    print ("\nHi " + player1.userName + " Welcome to Knott’s Scary Farm.")
     print("\nTo get the commands of the game type help.")
+    return player1
 
 def printTitleIntro():
     print("Welcome to Knott's Scary Farm!")
@@ -73,52 +131,53 @@ def printEndingCopyright():
     
 def initGameData():                                   
     #newloc
-    global playerScore
-    playerScore = 5
-    global playerLocation
-    playerLocation = 3
+#    global playerScore
+#    playerScore = 5
+#    global playerLocation
+#    playerLocation = 3
 #Player starts off in the funnel cake which has coords Y 4 X 1
-    global playerY
-    global playerX
-    playerY = 4
-    playerX = 1
+#    global playerY
+#    global playerX
+#    playerY = 4
+#    playerX = 1
     
     #Booleans
     #this is how we know where the player has been
-    global hasVisited
-    hasVisited = [0,0,0,0,0,0,0,0,0,0]
+#    global hasVisited
+#    hasVisited = [0,0,0,0,0,0,0,0,0,0]
     
     #Time Limit
-    global playerMoves
-    playerMoves = 20
+#    global playerMoves
+#    playerMoves = 20
 
-    print("\n" + locationDiscription[funnelCake])
+    print("\n" + locations[3].description)
+    locations[3].hasVisited = True
     
-def showScene():
-    global locationDiscription
-    global playerLocation
+def showScene(player1):
+#    global locationDiscription
+#    global playerLocation
 
     #if the player has visited show them the short discritpion if they have not show them the long one
-    if hasVisited[playerLocation]:
-        print("\n The player is at " +  shortName[playerLocation])
+    if locations[player1.location].hasVisited:
+        print("\n You are at " + locations[player1.location].name)
     else:
-        print("\nYour current Location is " + shortName[playerLocation])
+        print("You are at " + locations[player1.location].description)
     
 def processInput():
     global playerInput
     playerInput = input("\nplease enter a command: ").lower()
     
-def updateGame():
+def updateGame(player1):
     #this check if the player has any moves left
-    global playerMoves
-    global playerName
-    global playerLocation
+#    global playerMoves
+#    global playerName
+#    global playerLocation
     global playerInput
-    if playerMoves == 0:
+    if player1.moves == 0:
         running = False
 #checks if the player has entered a direction 
     elif playerInput == "north" or playerInput == "south" or playerInput == "east" or playerInput == "west":
-        moveTo()
+        moveTo(player1)
     elif playerInput == "help":
         print("\nThe commands to this game is: North, South, East, West, Help, Points, Map, look, search, take, and Quit")       
     elif playerInput == "quit":
@@ -126,18 +185,14 @@ def updateGame():
         printEndingCopyright()
         quit()
     elif playerInput == "points":
-        print("\nYour current score is " + str(playerScore))
+        print("\nYour current score is " + str(player1.score))
     elif playerInput == "look":
-        print("\nYour current Location is " + locationDiscription[playerLocation])
+        locations[player1.location].look()
     elif playerInput == "search":
-        print("you see the following items " + items[playerLocation])
+        locations[player1.location].search()
     elif playerInput == "take":
-        if items[playerLocation] == "none":
-            print("there nothing there to take")
-        else:
-            print("you picked up a " + items[playerLocation])
-            inventory.append(items[playerLocation])
-            items[playerLocation] = "none"
+        item = input("\nWhat would you like to take? ").lower()
+        player1.inventory.append(locations[player1.location].take(item))
     #this is the player map
     elif playerInput == "map":
         print(" 7 - 6 - 8")
@@ -152,68 +207,76 @@ def updateGame():
         print("4: Bullet \n5: Bathroom")
         print("6: Spaceshuttle \n7: Cottoncandy")
         print("8: beachLagoon \n9: PaperWorld")
-def moveTo():
-    global hasVisited
-    global playerScore
-    global playerLocation
-    global playerY
-    global playerX
-    global playerMoves
+def moveTo(player1):
+#    global playerScore
+#    global playerLocation
+#    global playerY
+#    global playerX
+#    global playerMoves
 #copies the player coords in case the player can not move the direction they want
-    tempX = playerX
-    tempY = playerY
+    tempX = player1.x
+    tempY = player1.y
 #gets a change in the list index given which direction the player entered
-    if playerInput == "north" and playerY >= 0:
-        playerY = playerY - 1
-    elif playerInput == "south" and playerY < 5:
-        playerY = playerY + 1
-    elif playerInput == "east" and playerX < 4:
-        playerX = playerX + 1
-    elif playerInput == "west" and playerX >= 0:
-        playerX = playerX - 1
+    if playerInput == "north" and player1.y >= 0:
+        player1.y = player1.y - 1
+    elif playerInput == "south" and player1.y < 5:
+        player1.y = player1.y + 1
+    elif playerInput == "east" and player1.x < 4:
+        player1.x = player1.x + 1
+    elif playerInput == "west" and player1.x >= 0:
+        player1.x = player1.x - 1
     #makes sure the new location isn't -1 which is the value that means no location
-    if worldMatrix[playerY][playerX] != -1:
-        location = worldMatrix[playerY][playerX]
-        playerLocation = location
+    if worldMatrix[player1.y][player1.x] != -1:
+        #take away one move form the player moves
+        player1.moves -= 1
+        player1.updateLocation()
         #shows scene right before change the boolean of visited to True
-        showScene()
-        playerMoves -= 1
-        if not hasVisited[location]:
-            playerScore = playerScore + 5
-            hasVisited[location] = True
+        showScene(player1)
+        if not locations[player1.location].hasVisited:
+            player1.score = player1.score + 5
+            locations[player1.location].hasVisited = True
     else:
         print("You can't go", playerInput)
-        playerX = tempX
-        playerY = tempY
+        player1.x = tempX
+        player1.y = tempY
         
-def checkForWin():
-    numberofplacesVisited = 0
-    visits = 0
-    for i in hasvisited:
-        if i == 1:
-            numberofplacesvisited += i
-        visits += i
-        if numberofplacesVisited == 10:
-            win()
-        elif visit > 10:
-            lose()
+def checkForWin(player1):
+    if player1.moves <= 0:
+        runOutOfMoves()
+        return False
+    #if player is at ghost rider and they have a camera make them lose
+    elif player1.location == 1 and "camera" in player1.inventory:
+        lose()
+        return False
+    #if player is at beach lagon and has fries they win
+    elif player1.location == 9 and "fries" in player1.inventory:
+        win()
+        return False
+    return True
+    
+    
+
+
 def win():
     print("you Win!")
     
 def lose():
-    print("sorry you lost, please try again")
+    print("you dropped your camera while on the xcelerator and it broke, please try again")
+
+def runOutOfMoves():
+    print("You've ran out moves")
     
-def gameLoop():
+def gameLoop(player1):
     running = True
     while running:
         processInput()
-        updateGame()
-        checkForWin()
+        updateGame(player1)
+        running = checkForWin(player1)
 def main():
     printTitleIntro()
-    playerCustomization()
+    player1 = playerCustomization()
     initGameData()
-    gameLoop()
+    gameLoop(player1)
     printEndingCopyright()
 main()
 
