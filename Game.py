@@ -4,13 +4,13 @@
 
 from Location import *
 from Player import *
-        
+
 locations = [
     Location("ghostrider", ["camera"], "Ghostrider: A wooden rollercoaster, is the longest, \
 tallest roller-coaster made to scare kids as if they were in a pirate ship."),
     Location("xcelerator", [], "Xcelerator: This rocket looking roller-coaster, is the \
 fastest ride at Knott’s going 0.82 mph in 2.3 sec."),
-    Location("boomerang", [], "Boomerang: Have you ever took a rollercoaster ride and \
+    Location("boomerang", ["paperbag"], "Boomerang: Have you ever took a rollercoaster ride and \
 back again twice going 0 to 55 in 3 sec."),
     Location("funnelCake", ["fries"], "The Funnel Stand: The Best funnel cake you would buy at an amusement park, \
 you haven't had anything good till you tried it."),
@@ -25,24 +25,9 @@ but wait till you go to the bathroom for an even bigger surprise."),
     Location("legoland", ["baby"], "LegoLand: Build your way out the land of legos")
     ]
 
-#new for project4  items,
-#this array holds the description of the players location
-#global need it for game
-#We craeted a matrix grid for Project4
-#location names are index's for the locationDiscription list
-inventory =[]
-worldMatrix = [
-[ -1,-1,-1, -1,-1],
-[ -1, 7, 6, 8, -1],
-[ -1, 5, 1, 10,-1],
-[ -1, 2, 0, 11,-1],
-[ -1, 3, 4, 9, -1],
-[ -1,-1,-1,-1, -1]
-]
-
 playerInput = 3
 
-#this makes the player instance and gets the username from oplayer
+#this makes the player instance and gets the username from player
 def playerCustomization():
     playerName = input("What is your name? ")
     player1 = Player(playerName)
@@ -64,9 +49,6 @@ def initGameData():
     locations[3].hasVisited = True
     
 def showScene(player1):
-#    global locationDiscription
-#    global playerLocation
-    #if the player has visited show them the short discritpion if they have not show them the long one
     if locations[player1.location].hasVisited:
         print("\n You are at " + locations[player1.location].name)
     else:
@@ -77,14 +59,10 @@ def processInput():
     playerInput = input("\nplease enter a command: ").lower()
     
 def updateGame(player1):
-    #this check if the player has any moves left
-#    global playerMoves
-#    global playerName
-#    global playerLocation
     global playerInput
     if player1.moves == 0:
         running = False
-#checks if the player has entered a direction 
+    #checks if the player has entered a direction 
     elif playerInput == "north" or playerInput == "south" or playerInput == "east" or playerInput == "west":
         moveTo(player1)
     elif playerInput == "help":
@@ -100,18 +78,22 @@ def updateGame(player1):
     elif playerInput == "search":
         locations[player1.location].search()
     elif playerInput[0:4] == "take":
-        item = playerInput.split()[1]
-        player1.inventory.append(locations[player1.location].take(item))
+        # TODO before getting item name, first check that there is one (does the command have a second word?)
+         item = playerInput.split()[0][1]
+         locations[player1.location].take()
+         player1.inventory.append(locations[player1.location].take(item))
+        
     elif playerInput[0:4] == "drop":
         #gets the second word from the player input
-        item = playerInput.split()[1]
+        item = playerInput.split()[0][1]
         locations[player1.location].drop(item, player1.inventory)
     elif playerInput[0:3] == "use":
-        item = playerInput.split()[1]
-        player1.use(item)
+        player1.use()
         
     #this is the player map
     elif playerInput == "map":
+        # TODO before printing the map, check if the map is in the player's inventory
+        # if not, then do nothing, only print the map if it is
         print(" 7 - 6 - 8")
         print(" |   |")
         print(" 5 - 1 - 10")
@@ -125,11 +107,13 @@ def updateGame(player1):
         print("6: Spaceshuttle \n7: Cottoncandy")
         print("8: beachLagoon \n9: PaperWorld")
         print("10: Admission office \n11: Lego Land")
+    else:
+        print("Not a valid command")
 def moveTo(player1):
-#copies the player coords in case the player can not move the direction they want
+    #copies the player coords in case the player can not move the direction they want
     tempX = player1.x
     tempY = player1.y
-#gets a change in the list index given which direction the player entered
+    #gets a change in the list index given which direction the player entered
     if playerInput == "north" and player1.y >= 0:
         player1.y = player1.y - 1
     elif playerInput == "south" and player1.y < 5:
@@ -138,8 +122,9 @@ def moveTo(player1):
         player1.x = player1.x + 1
     elif playerInput == "west" and player1.x >= 0:
         player1.x = player1.x - 1
+        
     #makes sure the new location isn't -1 which is the value that means no location
-    if worldMatrix[player1.y][player1.x] != -1:
+    if player1.worldMatrix[player1.y][player1.x] != -1:
         #take away one move form the player moves
         player1.moves -= 1
         player1.updateLocation()
@@ -152,16 +137,14 @@ def moveTo(player1):
         print("You can't go", playerInput)
         player1.x = tempX
         player1.y = tempY
-        
+           
 def checkForWin(player1):
     if player1.moves <= 0:
         runOutOfMoves()
         return False
-    #if player is at ghost rider and they have a camera make them lose
     elif player1.location == 1 and "camera" in player1.inventory:
         lose()
         return False
-    #if player is at beach lagon and has fries they win
     elif player1.winOrLose == "win":
         win()
         return False
@@ -182,17 +165,14 @@ def gameLoop(player1):
         processInput()
         updateGame(player1)
         running = checkForWin(player1)
+        
 def main():
     printTitleIntro()
     player1 = playerCustomization()
     initGameData()
     gameLoop(player1)
     printEndingCopyright()
+    
 main()
 
-#make a new elif statement after it checks for directions then just have it print something like discriptions[location]
-#make a new list of 10 things that has None for all and then have 3 items have a list
-#make a new list of booleans all false that is if searched
-#then add a search thing that makes that list of booleans true
-#pick a location make an if statement in the go to then add a if item in statement then choose win or lose given a location
 

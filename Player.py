@@ -8,8 +8,17 @@ class Player:
         self.moves = 20
         self.location = 3
         self.winOrLose = "none"
+        self.worldMatrix = worldMatrix = [
+                        [ -1,-1,-1, -1,-1],
+                        [ -1, 7, 6, 8, -1],
+                        [ -1, 5, 1, 10,-1],
+                        [ -1, 2, 0, 11,-1],
+                        [ -1, 3, 4, 9, -1],
+                        [ -1,-1,-1,-1, -1]
+                        ]
     def updateLocation(self):
-        self.location = worldMatrix[self.y][self.x]
+        self.location = self.worldMatrix[self.y][self.x]
+    
     def use(self, item):
         if item in self.inventory:
             if item == "camera":

@@ -23,6 +23,7 @@ class Location:
             if item in self.items:
                 print("you picked up a " + item)
                 self.items.remove(item)
+                return item
             else:
                 print("there nothing there to take")
         else:
