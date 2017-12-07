@@ -28,10 +28,6 @@ class Location:
                 print("there nothing there to take")
         else:
             print("You do not see anything")
-    def drop(self, item, inventory):
-        if item in inventory:
+    def drop(self, item):
             print("you dropped a " + item)
-            inventory.remove(item)
             self.items.append(item)
-        else:
-            print("you don't have that item")

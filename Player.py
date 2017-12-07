@@ -25,5 +25,10 @@ class Player:
                 print("You took a photo")
             elif item == "baby" and self.location == 10:
                 self.winOrLose = "win"
+            elif item == "fries":
+                print("You eat a fries")
         else:
             print("you don't have the item")
+            
+    def playerInventory(self):
+        print(self.inventory)

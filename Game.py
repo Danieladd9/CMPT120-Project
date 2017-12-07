@@ -79,34 +79,47 @@ def updateGame(player1):
         locations[player1.location].search()
     elif playerInput[0:4] == "take":
         # TODO before getting item name, first check that there is one (does the command have a second word?)
-         item = playerInput.split()[0][1]
-         locations[player1.location].take()
-         player1.inventory.append(locations[player1.location].take(item))
-        
+         item = playerInput.split()
+         if len(item) == 2:
+             player1.inventory.append(locations[player1.location].take(item[1]))
+         else:
+            print("there nothing there to take")       
     elif playerInput[0:4] == "drop":
         #gets the second word from the player input
-        item = playerInput.split()[0][1]
-        locations[player1.location].drop(item, player1.inventory)
+         item = playerInput.split()
+         if len(item) == 2:
+             if item[1] in player1.inventory:
+                 (locations[player1.location].drop(item[1]))
+                 player1.inventory.remove(item[1])
+         else:
+            print("there nothing there to drop")
     elif playerInput[0:3] == "use":
-        player1.use()
+        item = playerInput.split()
+        if len(item) == 2:
+            player1.use(item[1])
+    elif playerInput == "inventory":
+        player1.playerInventory()
         
     #this is the player map
     elif playerInput == "map":
         # TODO before printing the map, check if the map is in the player's inventory
         # if not, then do nothing, only print the map if it is
-        print(" 7 - 6 - 8")
-        print(" |   |")
-        print(" 5 - 1 - 10")
-        print(" |   |")
-        print(" 2 - 0 - 11")
-        print(" |   |")
-        print(" 3 - 4 - 9")
-        print("0: Ghostrider \n1: Xcelerator")
-        print("2: Boomerang \n3: Funnelcake")
-        print("4: Bullet \n5: Bathroom")
-        print("6: Spaceshuttle \n7: Cottoncandy")
-        print("8: beachLagoon \n9: PaperWorld")
-        print("10: Admission office \n11: Lego Land")
+        if "map" in player1.inventory:
+            print(" 7 - 6 - 8")
+            print(" |   |")
+            print(" 5 - 1 - 10")
+            print(" |   |")
+            print(" 2 - 0 - 11")
+            print(" |   |")
+            print(" 3 - 4 - 9")
+            print("0: Ghostrider \n1: Xcelerator")
+            print("2: Boomerang \n3: Funnelcake")
+            print("4: Bullet \n5: Bathroom")
+            print("6: Spaceshuttle \n7: Cottoncandy")
+            print("8: beachLagoon \n9: PaperWorld")
+            print("10: Admission office \n11: Lego Land")
+        else:
+            print("Go and find the map")
     else:
         print("Not a valid command")
 def moveTo(player1):
