@@ -36,10 +36,18 @@ def playerCustomization():
     return player1
 
 def printTitleIntro():
-    print("Welcome to Knott's Scary Farm!")
+    print("\nWelcome to Knott's Scary Farm!")
     print("==============================\n")
     print("Come to get scared from your socks this October for a very special night on Halloween.\n")
-    
+
+def WinandFailure():
+    playerInput = input("\nWould you like to player again? (Yes/No) ").lower()
+    if playerInput == "yes":
+        main()
+    elif playerInput == "No":
+        printEndingCopyright()
+        quit()
+        
 def printEndingCopyright():
     print("\nYou went home after a long day of Fright Fest.")
     print("\nCopyright 2017 Daniel Addison Daniel.addison1@marist.edu")
@@ -66,7 +74,7 @@ def updateGame(player1):
     elif playerInput == "north" or playerInput == "south" or playerInput == "east" or playerInput == "west":
         moveTo(player1)
     elif playerInput == "help":
-        print("\nThe commands to this game is: North, South, East, West, Help, Points, Map, look, search, take, drop, use and Quit")       
+        print("\nThe commands to this game is: North, South, East, West, Help, Points, Map, look, search, take, drop, inventory, use, Converse, Backtrack, Pray, and Quit")       
     elif playerInput == "quit":
         print("\nGoodbye, Thank You for playing.")
         printEndingCopyright()
@@ -99,6 +107,12 @@ def updateGame(player1):
             player1.use(item[1])
     elif playerInput == "inventory":
         player1.playerInventory()
+    elif playerInput == "pray":
+        player1.playerPray()
+    elif playerInput == "converse":
+        player1.playerConverse()
+    elif playerInput == "backtrack":
+        player1.backTrack()
         
     #this is the player map
     elif playerInput == "map":
@@ -184,6 +198,7 @@ def main():
     player1 = playerCustomization()
     initGameData()
     gameLoop(player1)
+    WinandFailure()
     printEndingCopyright()
     
 main()
